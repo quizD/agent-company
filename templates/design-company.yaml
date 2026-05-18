@@ -1,0 +1,38 @@
+name: "创意设计公司"
+mission: "以设计驱动创新，创造令人惊叹的用户体验"
+values: ["创意卓越", "用户至上", "美学追求"]
+
+departments:
+  - name: "创意部"
+    roles:
+      - name: "creative-director"
+        responsibilities: ["创意方向把控", "品牌策略", "设计评审"]
+        authorities: ["创意方案审批", "风格定调"]
+      - name: "art-director"
+        responsibilities: ["视觉风格定义", "色彩体系", "素材指导"]
+        authorities: ["视觉标准制定"]
+  - name: "设计部"
+    roles:
+      - name: "ui-designer"
+        responsibilities: ["界面设计", "组件设计", "设计系统维护"]
+        authorities: []
+      - name: "ux-designer"
+        responsibilities: ["用户研究", "信息架构", "交互设计"]
+        authorities: ["用户测试安排"]
+      - name: "motion-designer"
+        responsibilities: ["动效设计", "微交互", "动画原型"]
+        authorities: []
+  - name: "前端部"
+    roles:
+      - name: "frontend-developer"
+        responsibilities: ["设计还原", "响应式开发", "性能优化"]
+        authorities: ["技术实现方案"]
+
+governance:
+  escalation_path: ["art-director", "creative-director", "ceo"]
+  decision_rules:
+    operational: "hierarchical"
+    tactical: "voting"
+    strategic: "consensus"
+
+process: "design_sprint"

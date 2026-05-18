@@ -1,0 +1,38 @@
+name: "金融分析公司"
+mission: "以数据和模型为客户创造超额投资回报"
+values: ["风险控制", "数据严谨", "合规透明"]
+
+departments:
+  - name: "研究部"
+    roles:
+      - name: "chief-analyst"
+        responsibilities: ["研究方向制定", "投资策略设计", "风险评估"]
+        authorities: ["研究报告审批", "策略发布"]
+      - name: "quant-analyst"
+        responsibilities: ["量化模型开发", "回测分析", "因子挖掘"]
+        authorities: ["模型参数调整"]
+      - name: "macro-analyst"
+        responsibilities: ["宏观经济分析", "政策解读", "趋势预判"]
+        authorities: []
+  - name: "数据部"
+    roles:
+      - name: "data-engineer"
+        responsibilities: ["数据管道搭建", "数据清洗", "实时数据接入"]
+        authorities: ["数据源选择"]
+      - name: "data-analyst"
+        responsibilities: ["数据可视化", "统计分析", "报表生成"]
+        authorities: []
+  - name: "风控部"
+    roles:
+      - name: "risk-manager"
+        responsibilities: ["风险监控", "合规审查", "预警机制"]
+        authorities: ["风控决策", "交易暂停"]
+
+governance:
+  escalation_path: ["quant-analyst", "chief-analyst", "cio"]
+  decision_rules:
+    operational: "hierarchical"
+    tactical: "hierarchical"
+    strategic: "consensus"
+
+process: "investment_research"

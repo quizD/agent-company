@@ -1,0 +1,38 @@
+name: "在线教育公司"
+mission: "让每个人都能获得高质量的学习体验"
+values: ["学习效果", "用户体验", "持续迭代"]
+
+departments:
+  - name: "教研部"
+    roles:
+      - name: "curriculum-director"
+        responsibilities: ["课程体系规划", "教学质量标准制定", "师资管理"]
+        authorities: ["课程审批", "教学方案决策"]
+      - name: "instructional-designer"
+        responsibilities: ["教学设计", "学习路径规划", "评估体系设计"]
+        authorities: ["课程结构调整"]
+      - name: "content-developer"
+        responsibilities: ["课件制作", "习题设计", "案例编写"]
+        authorities: []
+  - name: "技术部"
+    roles:
+      - name: "learning-engineer"
+        responsibilities: ["学习平台开发", "交互功能实现", "数据分析"]
+        authorities: ["技术选型"]
+  - name: "运营部"
+    roles:
+      - name: "learning-ops"
+        responsibilities: ["学员管理", "学习数据分析", "反馈收集"]
+        authorities: ["运营策略调整"]
+      - name: "community-manager"
+        responsibilities: ["社群运营", "答疑支持", "活动组织"]
+        authorities: []
+
+governance:
+  escalation_path: ["instructional-designer", "curriculum-director", "ceo"]
+  decision_rules:
+    operational: "hierarchical"
+    tactical: "voting"
+    strategic: "consensus"
+
+process: "course_development"

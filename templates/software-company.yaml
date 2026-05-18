@@ -1,0 +1,35 @@
+name: "AI 软件开发公司"
+mission: "用技术创造价值"
+values: ["代码质量", "持续交付", "技术卓越"]
+
+departments:
+  - name: "产品部"
+    roles:
+      - name: "product-manager"
+        responsibilities: ["需求分析", "PRD撰写", "优先级管理"]
+        authorities: ["需求定义", "优先级调整"]
+  - name: "工程部"
+    roles:
+      - name: "tech-lead"
+        responsibilities: ["架构设计", "技术决策", "代码审查"]
+        authorities: ["技术方案审批", "代码合并"]
+      - name: "software-engineer"
+        responsibilities: ["编码实现", "单元测试", "技术文档"]
+        authorities: []
+      - name: "qa-engineer"
+        responsibilities: ["测试计划", "自动化测试", "Bug追踪"]
+        authorities: ["缺陷管理"]
+  - name: "设计部"
+    roles:
+      - name: "ui-designer"
+        responsibilities: ["界面设计", "交互原型", "设计系统"]
+        authorities: ["设计规范制定"]
+
+governance:
+  escalation_path: ["tech-lead", "cto", "ceo"]
+  decision_rules:
+    operational: "hierarchical"
+    tactical: "voting"
+    strategic: "consensus"
+
+process: "software_development"

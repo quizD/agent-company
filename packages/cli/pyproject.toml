@@ -1,0 +1,17 @@
+[project]
+name = "agent-company-cli"
+version = "0.2.0"
+description = "Agent Company CLI — 命令行工具"
+requires-python = ">=3.10"
+dependencies = [
+    "agent-company-core",
+    "click>=8.0",
+    "rich>=13.0",
+]
+
+[project.scripts]
+agent-co = "agent_company_cli.main:cli"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

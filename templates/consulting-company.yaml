@@ -1,0 +1,38 @@
+name: "战略咨询公司"
+mission: "以深度洞察帮助客户做出最优决策"
+values: ["专业严谨", "数据驱动", "客户成功"]
+
+departments:
+  - name: "项目管理部"
+    roles:
+      - name: "project-manager"
+        responsibilities: ["项目规划", "进度管控", "客户沟通"]
+        authorities: ["资源调配", "里程碑审批"]
+  - name: "分析部"
+    roles:
+      - name: "senior-analyst"
+        responsibilities: ["框架设计", "深度分析", "结论输出"]
+        authorities: ["分析方法选择", "数据获取"]
+      - name: "analyst"
+        responsibilities: ["数据收集", "定量分析", "报表制作"]
+        authorities: []
+      - name: "researcher"
+        responsibilities: ["行业调研", "竞品分析", "案例研究"]
+        authorities: []
+  - name: "交付部"
+    roles:
+      - name: "solution-architect"
+        responsibilities: ["方案设计", "可行性评估", "实施路径规划"]
+        authorities: ["方案审批"]
+      - name: "presentation-specialist"
+        responsibilities: ["报告撰写", "演示制作", "可视化设计"]
+        authorities: []
+
+governance:
+  escalation_path: ["senior-analyst", "project-manager", "managing-director"]
+  decision_rules:
+    operational: "hierarchical"
+    tactical: "voting"
+    strategic: "consensus"
+
+process: "consulting_engagement"

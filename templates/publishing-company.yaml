@@ -1,0 +1,38 @@
+name: "内容出版公司"
+mission: "以优质内容启迪读者，传播知识与思想"
+values: ["内容质量", "创意表达", "准时交付"]
+
+departments:
+  - name: "编辑部"
+    roles:
+      - name: "chief-editor"
+        responsibilities: ["选题策划", "内容方向把控", "终审定稿"]
+        authorities: ["选题决策", "出版审批", "预算分配"]
+      - name: "editor"
+        responsibilities: ["稿件审阅", "结构优化", "质量把关"]
+        authorities: ["退稿建议", "修改指令"]
+  - name: "创作部"
+    roles:
+      - name: "writer"
+        responsibilities: ["内容撰写", "素材调研", "修改迭代"]
+        authorities: []
+      - name: "researcher"
+        responsibilities: ["资料收集", "事实核查", "数据整理"]
+        authorities: []
+  - name: "制作部"
+    roles:
+      - name: "proofreader"
+        responsibilities: ["文字校对", "格式检查", "一致性审核"]
+        authorities: ["校对标注"]
+      - name: "layout-designer"
+        responsibilities: ["版式设计", "封面设计", "排版输出"]
+        authorities: ["设计方案选择"]
+
+governance:
+  escalation_path: ["editor", "chief-editor", "ceo"]
+  decision_rules:
+    operational: "hierarchical"
+    tactical: "hierarchical"
+    strategic: "consensus"
+
+process: "content_publishing"

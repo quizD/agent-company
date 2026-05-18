@@ -11,6 +11,8 @@
 ![Version](https://img.shields.io/badge/Version-0.2.0-orange.svg)
 ![Status](https://img.shields.io/badge/Status-Alpha-red.svg)
 
+**English** | [中文](README_zh.md)
+
 ---
 
 ## How It Works (30 seconds)

@@ -44,20 +44,52 @@ flowchart LR
 ## 快速开始
 
 ```bash
+git clone https://github.com/quizD/agent-company.git
+cd agent-company
 pip install -e packages/core
 
-# 运行完整招标流程
-python examples/full_tender_demo.py
-
-# 或使用 CLI
-pip install -e packages/cli
-agent-co run "开发一个待办事项应用" --budget 20
-```
-
-```bash
-# Live Demo（不需要 API Key）
+# 运行 Demo（无需 API Key）
 python examples/live_demo.py --mock
+
+# 接入真实 LLM（支持任何 OpenAI 兼容 API）
+export OPENAI_API_BASE="https://your-api-endpoint/v1"
+export OPENAI_API_KEY="your-key"
+export OPENAI_MODEL="your-model"
+python examples/live_demo.py --provider openai
 ```
+
+<details>
+<summary><strong>Demo 输出示例（点击展开）</strong></summary>
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║ Agent Company — Live Demo                                    ║
+╚══════════════════════════════════════════════════════════════╝
+
+Step 1 │ 人才池总览 (17 个 Agent)
+Step 2 │ 需求分析 → 内容出版 / 中等复杂度
+Step 3 │ 招标过程
+         ╭────────┬──────┬──────────┬──────╮
+         │ 何严   │ 主编 │    A     │ 49.9 │
+         │ 陈妙言 │ 作者 │    B     │ 55.7 │
+         │ 林墨白 │ 作者 │    A     │ 52.9 │
+         │ 苏晚晴 │ 校对 │    A     │ 39.5 │
+         ╰────────┴──────┴──────────┴──────╯
+Step 4 │ 价值观对齐 (7 条准则生效)
+Step 5 │ LLM 执行 → 4 个 Agent 产出真实内容
+Step 6 │ 绩效评审 → 2个 D 级, 2个 F 级
+Step 7 │ 健康度评估 → 57.2/100
+
+         ╭──────────────┬───────────────────╮
+         │ LLM 调用次数 │ 4 次              │
+         │ 总成本       │ $0.03             │
+         │ 总耗时       │ 79.2 秒           │
+         ╰──────────────┴───────────────────╯
+```
+
+</details>
+
+实测效果：使用 GLM-5.1 模型，4 个 Agent 协作完成了一篇 AI Agent 技术博客，总成本 $0.03，耗时 79 秒。
 
 ---
 

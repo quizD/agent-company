@@ -136,7 +136,7 @@ class MockLLM:
 
 
 class RealLLM:
-    """真实 LLM 调用封装，支持 Anthropic Claude 和 OpenAI GPT。"""
+    """真实 LLM 调用封装，支持 Anthropic Claude、OpenAI GPT 及兼容 API。"""
 
     def __init__(self, provider: str):
         self.provider = provider
@@ -154,8 +154,14 @@ class RealLLM:
         elif self.provider == "openai":
             try:
                 import openai
-                self._client = openai.OpenAI()
-                self._model = "gpt-4o-mini"
+                # 支持自定义 endpoint（OpenAI 兼容协议）
+                base_url = os.environ.get("OPENAI_API_BASE")
+                api_key = os.environ.get("OPENAI_API_KEY", "sk-placeholder")
+                self._client = openai.OpenAI(
+                    api_key=api_key,
+                    base_url=base_url,
+                ) if base_url else openai.OpenAI()
+                self._model = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
             except ImportError:
                 raise RuntimeError("请安装 openai: pip install openai")
 
@@ -198,7 +204,7 @@ def detect_provider() -> str | None:
     """自动检测可用的 LLM provider"""
     if os.environ.get("ANTHROPIC_API_KEY"):
         return "anthropic"
-    if os.environ.get("OPENAI_API_KEY"):
+    if os.environ.get("OPENAI_API_KEY") or os.environ.get("OPENAI_API_BASE"):
         return "openai"
     return None
 

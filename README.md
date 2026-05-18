@@ -44,15 +44,47 @@ flowchart LR
 ## Quick Start
 
 ```bash
+git clone https://github.com/quizD/agent-company.git
+cd agent-company
 pip install -e packages/core
 
-# Run a full tendering pipeline
-python examples/full_tender_demo.py
-
-# Or use the CLI
-pip install -e packages/cli
-agent-co run "Build a todo app" --budget 20
+# Run live demo (no API key needed)
+python examples/live_demo.py --mock
 ```
+
+<details>
+<summary><strong>Demo Output (click to expand)</strong></summary>
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║ Agent Company — Live Demo                                    ║
+╚══════════════════════════════════════════════════════════════╝
+模式: 真实模式 (OpenAI-compatible)
+
+Step 1 │ 人才池总览 (17 agents)
+Step 2 │ 需求分析 → 内容出版 / medium complexity
+Step 3 │ 招标过程
+         ╭────────┬──────┬──────────┬──────╮
+         │ 何严   │ 主编 │    A     │ 49.9 │
+         │ 陈妙言 │ 作者 │    B     │ 55.7 │
+         │ 林墨白 │ 作者 │    A     │ 52.9 │
+         │ 苏晚晴 │ 校对 │    A     │ 39.5 │
+         ╰────────┴──────┴──────────┴──────╯
+Step 4 │ 价值观对齐 (7 principles enforced)
+Step 5 │ LLM 执行 → 4 agents produced real content
+Step 6 │ 绩效评审 → 2x D-grade, 2x F-grade
+Step 7 │ 健康度 → 57.2/100
+
+         ╭──────────────┬───────────────────╮
+         │ LLM 调用次数 │ 4 次              │
+         │ 总成本       │ $0.03             │
+         │ 总耗时       │ 79.2 秒           │
+         ╰──────────────┴───────────────────╯
+```
+
+</details>
+
+With a real LLM (tested with GLM-5.1 via OpenAI-compatible API), each agent produces actual content — a blog post about AI Agent architecture was written by 4 agents in under 80 seconds for $0.03 total.
 
 ---
 

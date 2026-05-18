@@ -366,7 +366,10 @@ def _manager_agents() -> list[AgentProfile]:
         AgentProfile(
             name="黄产品",
             category="manager",
-            skills={"product_strategy": 0.9, "user_research": 0.88, "roadmap_planning": 0.85, "requirement_analysis": 0.92},
+            skills={
+                "product_strategy": 0.9, "user_research": 0.88,
+                "roadmap_planning": 0.85, "requirement_analysis": 0.92,
+            },
             specializations=["产品管理", "需求分析", "产品规划"],
             tools_proficiency={"figma": 0.7, "jira": 0.85, "notion": 0.9, "miro": 0.8},
             personality={

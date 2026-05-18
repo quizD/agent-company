@@ -401,7 +401,10 @@ class DimensionScorer:
 
         # 治理有效性：规则被执行的比例
         if governance_rules:
-            enforced = sum(1 for r in governance_rules if r.get("enforced", False)) if isinstance(governance_rules[0], dict) else len(governance_rules)
+            if isinstance(governance_rules[0], dict):
+                enforced = sum(1 for r in governance_rules if r.get("enforced", False))
+            else:
+                enforced = len(governance_rules)
             total_rules = len(governance_rules)
             score += 35.0 * (enforced / total_rules)
         else:

@@ -27,6 +27,7 @@ import os
 import random
 import sys
 import time
+from pathlib import Path
 
 # 添加 core 包路径
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "packages", "core", "src"))
@@ -226,6 +227,7 @@ def main():
         default="写一篇关于 AI Agent 的技术博客，涵盖多智能体协作、招标制架构和绩效管理",
         help="自定义需求文本",
     )
+    parser.add_argument("--config", type=str, default=None, help="配置目录路径（包含 agents.yaml/models.yaml/values.yaml）")
     args = parser.parse_args()
 
     # 确定使用 mock 还是真实 LLM
@@ -258,7 +260,17 @@ def main():
     # ══════════════════════════════════════════
     print_step(1, "人才池总览")
 
-    pool = create_default_pool()
+    if args.config:
+        config_dir = Path(args.config)
+    else:
+        config_dir = Path(__file__).parent.parent / "configs"
+
+    # 加载人才池
+    if config_dir.exists() and (config_dir / "agents.yaml").exists():
+        from agent_company.pool.loader import create_pool_from_yaml
+        pool = create_pool_from_yaml(config_dir / "agents.yaml")
+    else:
+        pool = create_default_pool()
     if HAS_RICH:
         table = Table(title=f"人才池 ({pool.size} 个 Agent)", box=box.SIMPLE)
         table.add_column("名称", style="cyan")

@@ -168,6 +168,41 @@ The company is continuously evaluated across 12 dimensions drawn from organizati
 
 ---
 
+## Configuration
+
+All settings live in the `configs/` directory — edit YAML to customize everything:
+
+```
+configs/
+├── agents.yaml    # Agent personalities, skills, and model assignments
+├── models.yaml    # LLM model tiers and pricing
+└── values.yaml    # Behavioral principles (add/remove/modify)
+```
+
+**Example: change an agent's personality**
+
+```yaml
+# configs/agents.yaml
+- name: "林墨白"
+  model_tier: A
+  llm_model: "claude-sonnet-4-20250514"
+  personality:
+    openness: 0.9        # more creative
+    conscientiousness: 0.7
+  skills:
+    technical_writing: 0.95
+```
+
+**Use custom config directory:**
+
+```bash
+python examples/live_demo.py --mock --config ./my_configs/
+```
+
+If `configs/` is missing, the framework falls back to built-in defaults automatically.
+
+---
+
 ## Project Structure
 
 ```

@@ -173,6 +173,41 @@ flowchart TD
 
 ---
 
+## 自主配置
+
+所有配置集中在 `configs/` 目录 — 编辑 YAML 即可自定义一切：
+
+```
+configs/
+├── agents.yaml    # Agent 性格、技能、模型分配
+├── models.yaml    # LLM 模型等级和定价
+└── values.yaml    # 行为准则（增删改）
+```
+
+**示例：修改 Agent 性格**
+
+```yaml
+# configs/agents.yaml
+- name: "林墨白"
+  model_tier: A
+  llm_model: "claude-sonnet-4-20250514"
+  personality:
+    openness: 0.9        # 更有创造力
+    conscientiousness: 0.7
+  skills:
+    technical_writing: 0.95
+```
+
+**使用自定义配置目录：**
+
+```bash
+python examples/live_demo.py --mock --config ./my_configs/
+```
+
+如果 `configs/` 不存在，框架自动降级到内置默认值。
+
+---
+
 ## 项目结构
 
 ```

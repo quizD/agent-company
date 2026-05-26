@@ -203,6 +203,60 @@ If `configs/` is missing, the framework falls back to built-in defaults automati
 
 ---
 
+## Agent Marketplace
+
+Community-contributed agents are packaged as `.agent.yaml` cards. Browse, search, install, publish:
+
+```bash
+python examples/marketplace_demo.py
+```
+
+**Card layout:**
+
+```yaml
+metadata:
+  card_id: community/writer-zh        # author/agent-name
+  version: 0.1.0
+  author: community
+  description: Chinese technical writer
+  tags: [writer, chinese, technical]
+profile:                              # full AgentProfile
+  name: Lin Mobai
+  category: writer
+  skills: { technical_writing: 0.92 }
+  model_tier: A
+attestations:                         # verified performance
+  - project_id: blog-2025-q1
+    score: 92.0
+    grade: A
+    attested_by: verified
+```
+
+**API:**
+
+```python
+from agent_company.marketplace import MarketplaceRegistry, CardMetadata
+
+registry = MarketplaceRegistry("./marketplace")
+
+# Browse / search
+cards = registry.list_agents()
+results = registry.search("python", tags=["engineer"], min_avg_score=85.0)
+
+# Install into local talent pool
+registry.install("community/writer-zh", pool)
+
+# Publish
+registry.publish(profile, CardMetadata(card_id="me/my-agent", author="me"))
+
+# Append attestation
+registry.attest("me/my-agent", attestation)
+```
+
+Each card has a SHA-256 fingerprint for tamper detection. Three sample cards live under `marketplace/`.
+
+---
+
 ## Project Structure
 
 ```
@@ -246,7 +300,7 @@ agent-company/
 ## Roadmap (v0.3)
 
 - [ ] **Inter-company collaboration** — Multiple Agent Companies working on the same project
-- [ ] **Agent marketplace** — Community-contributed agents with verified performance history
+- [x] **Agent marketplace** — Community-contributed agents with verified performance history
 - [ ] **Adaptive value calibration** — Auto-tune value weights based on project type
 - [ ] **Real-time dashboard** — Live WebSocket-powered monitoring of company operations
 

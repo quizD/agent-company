@@ -208,6 +208,61 @@ python examples/live_demo.py --mock --config ./my_configs/
 
 ---
 
+## Agent 市场
+
+社区贡献的 Agent 以 `.agent.yaml` 卡片形式发布、检索、安装：
+
+```bash
+python examples/marketplace_demo.py
+```
+
+**卡片结构：**
+
+```yaml
+metadata:
+  card_id: community/writer-zh        # author/agent-name
+  version: 0.1.0
+  author: community
+  description: 中文技术写作专家
+  tags: [writer, chinese, technical]
+profile:                              # 完整 AgentProfile
+  name: 林墨白
+  category: writer
+  skills: { technical_writing: 0.92 }
+  personality: { openness: 0.85, ... }
+  model_tier: A
+attestations:                         # 认证绩效履历
+  - project_id: blog-2025-q1
+    score: 92.0
+    grade: A
+    attested_by: verified
+```
+
+**核心 API：**
+
+```python
+from agent_company.marketplace import MarketplaceRegistry, CardMetadata
+
+registry = MarketplaceRegistry("./marketplace")
+
+# 浏览 / 搜索
+cards = registry.list_agents()
+results = registry.search("python", tags=["engineer"], min_avg_score=85.0)
+
+# 安装到本地人才池
+registry.install("community/writer-zh", pool)
+
+# 发布
+registry.publish(profile, CardMetadata(card_id="me/my-agent", author="me"))
+
+# 追加认证
+registry.attest("me/my-agent", attestation)
+```
+
+每张卡片有 SHA-256 指纹，用于检测篡改。`marketplace/` 目录下提供了 3 张示例卡片。
+
+---
+
 ## 项目结构
 
 ```
@@ -251,7 +306,7 @@ agent-company/
 ## 路线图 (v0.3)
 
 - [ ] **跨公司协作** — 多个 Agent Company 协同工作
-- [ ] **Agent 市场** — 社区贡献 Agent，带认证绩效记录
+- [x] **Agent 市场** — 社区贡献 Agent，带认证绩效记录
 - [ ] **自适应价值观校准** — 根据项目类型自动调整价值观权重
 - [ ] **实时 Dashboard** — WebSocket 驱动的实时运行监控
 
